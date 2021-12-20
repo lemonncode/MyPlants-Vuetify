@@ -13,12 +13,12 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        title: "Lunch",
+        title: "Get bananas",
         done: false,
       },
       {
         id: 3,
-        title: "Homework",
+        title: "Eat bananas",
         done: false,
       },
     ],
@@ -35,7 +35,6 @@ export default new Vuex.Store({
         done: false,
       };
       state.tasks.push(newTask);
-      // this.newTaskTitle = "";
     },
     doneTask(state, id) {
       let task = state.tasks.filter((task) => task.id === id)[0];
@@ -62,14 +61,12 @@ export default new Vuex.Store({
   actions: {
     addTask({ commit }, newTaskTitle) {
       commit("addTask", newTaskTitle);
-      commit("showSnackbar", "nueva plantita");
+      commit("showSnackbar", "Task added!");
     },
     deleteTask({ commit }, id) {
       commit("deleteTask", id);
-      commit("showSnackbar", "no mas plantitas");
+      commit("showSnackbar", "Task deleted!");
     },
   },
   getters: {},
-
-  modules: {},
 });

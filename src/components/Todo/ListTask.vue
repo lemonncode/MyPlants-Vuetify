@@ -5,13 +5,9 @@
 </template>
 
 <script>
-import Task from "../Todo/Task.vue";
 export default {
   components: {
-    task: Task,
+    task: require("@/components/Todo/Task.vue").default,
   },
 };
 </script>
-
-<style>
-</style>

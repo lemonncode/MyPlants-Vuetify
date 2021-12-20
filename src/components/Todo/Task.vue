@@ -2,11 +2,11 @@
   <div>
     <v-list-item
       @click="$store.commit('doneTask', task.id)"
-      :class="{ 'brown lighten-5': task.done }"
+      :class="{ 'blue lighten-5': task.done }"
     >
       <template v-slot:default>
         <v-list-item-action>
-          <v-checkbox :input-value="task.done" color="#8D6E63"></v-checkbox>
+          <v-checkbox :input-value="task.done" color="primary"></v-checkbox>
         </v-list-item-action>
 
         <v-list-item-content>
@@ -16,10 +16,9 @@
             {{ task.title }}
           </v-list-item-title>
         </v-list-item-content>
+
         <v-list-item-action>
-          <v-btn @click.stop="$store.dispatch('deleteTask', task.id)" icon>
-            <v-icon color="grey darken-2">mdi-delete</v-icon>
-          </v-btn>
+          <task-menu :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
@@ -30,5 +29,9 @@
 <script>
 export default {
   props: ["task"],
+
+  components: {
+    "task-menu": require("@/components/Todo/TaskMenu.vue").default,
+  },
 };
 </script>
