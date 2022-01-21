@@ -6,10 +6,15 @@
     class="pa-4"
     outlined
     label="Add Plant"
-    append-icon="mdi-plus"
     hide-details
     clearable
-  ></v-text-field>
+  >
+    <template v-slot:append>
+      <v-icon @click="addTask" color="primary" :disabled="newTaskTitleInvalid">
+        mdi-plus</v-icon
+      >
+    </template>
+  </v-text-field>
 </template>
 
 <script>
@@ -18,6 +23,11 @@ export default {
     return {
       newTaskTitle: "",
     };
+  },
+  computed: {
+    newTaskTitleInvalid() {
+      return !this.newTaskTitle;
+    },
   },
   methods: {
     addTask() {

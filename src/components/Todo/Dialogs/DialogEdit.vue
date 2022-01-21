@@ -2,22 +2,24 @@
   <v-row justify="center">
     <v-dialog value="true" persistent max-width="290">
       <v-card>
-        <v-card-title class="headline"> Delete task? </v-card-title>
+        <v-card-title class="headline"> Edit task? </v-card-title>
         <v-card-text>
-          Are you shire you wanna delete this gosh darn nother flipping
-          task?</v-card-text
-        >
+          Editar:
+          <v-text-field v-model="taskTitle" @keyup.enter="saveTask" />
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="$emit('close')">
-            No
+            Cancel
           </v-btn>
+
           <v-btn
+            @click="saveTask"
             color="red darken-1"
             text
-            @click="$store.dispatch('deleteTask', task.id)"
+            :disabled="taskTitleInvalid"
           >
-            Yes
+            Save
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -31,7 +33,28 @@ export default {
   data() {
     return {
       dialog: false,
+      taskTitle: null,
     };
+  },
+  computed: {
+    taskTitleInvalid() {
+      return !this.taskTitle || this.taskTitle === this.task.title;
+    },
+  },
+  methods: {
+    saveTask() {
+      if (!this.taskTitleInvalid) {
+        let payload = {
+          id: this.task.id,
+          title: this.taskTitle,
+        };
+        this.$store.dispatch("updateTaskTitle", payload);
+        this.$emit("close");
+      }
+    },
+  },
+  mounted() {
+    this.taskTitle = this.task.title;
   },
 };
 </script>

@@ -4,7 +4,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6"> Mis plantitas </v-list-item-title>
-          <v-list-item-subtitle> Best Todo Ever! </v-list-item-subtitle>
+          <v-list-item-subtitle> no olvidar darles amor! </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -23,31 +23,26 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark src="monstera.png" height="160xp">
+    <v-app-bar app color="primary" dark src="monstera.png" height="170xp">
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
           gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
       </template>
-
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Mis plantitas</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search />
+        </v-row>
+        <v-row>
+          <v-toolbar-title class="text-h4 ml-4">Mis plantitas</v-toolbar-title>
+        </v-row>
+        <v-row>
+          <livedatetime />
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -59,17 +54,22 @@
 </template>
 
 <script>
+import Search from "./components/Tools/Search.vue";
+import LiveDateTime from "./components/Tools/LiveDateTime.vue";
 import Snackbar from "./components/Globo/Snackbar.vue";
+
 export default {
   data: () => ({
     drawer: null,
     items: [
-      { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
+      { title: "Mis Plantitas", icon: "mdi-flower-tulip-outline", to: "/" },
 
-      { title: "About", icon: "mdi-help-box", to: "/about" },
+      { title: "Sobre mí", icon: "mdi-account-heart-outline", to: "/about" },
     ],
   }),
   components: {
+    search: Search,
+    livedatetime: LiveDateTime,
     snackbar: Snackbar,
   },
 };
