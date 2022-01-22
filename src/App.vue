@@ -56,7 +56,7 @@
 <script>
 import Search from "./components/Tools/Search.vue";
 import LiveDateTime from "./components/Tools/LiveDateTime.vue";
-import Snackbar from "./components/Globo/Snackbar.vue";
+import Snackbar from "@/components/Globo/Snackbar.vue";
 
 export default {
   data: () => ({
